@@ -31,28 +31,28 @@ SPINNEY_LUNCH3 = {
 }
 
 VEG_LUNCH1 = {
-    "Monday": "Vegetable Nuggets served with Chips, Garden Peas or Baked Beans & Ketchup",
-    "Tuesday": "Quorn Roast served with Yorkshire Pudding, Carrots, Cauliflower and Gravy",
+    "Monday": "Pasta Twists with Homemade Tomato and Vegetable Sauce served with Fresh Salad and Chunky Bread",
+    "Tuesday": "Quorn Sausage in a Crusty Bun served with Jacket Wedges, Crispy Salad Sticks & a Selection of Sauces",
     "Wednesday": "Jacket Potato with Choice of Toppings served with Fresh Salad",
-    "Thursday": "Quorn Sausage in a Crusty Bun served with Jacket Wedges, Crispy Salad Sticks & a Selection of Sauces",
-    "Friday": "Pasta Twists with Homemade Tomato and Vegetable Sauce served with Fresh Salad and Chunky Bread",
+    "Thursday": "Quorn Roast served with Yorkshire Pudding, Carrots, Cauliflower and Gravy",
+    "Friday": "Vegetable Nuggets served with Chips, Garden Peas or Baked Beans & Ketchup",   
 }
 
 VEG_LUNCH2 = {
-    "Monday": "Quorn Sausage served with Chips, Garden Peas or Baked Beans & Ketchup",
+    "Monday": "Traditional Macaroni Cheese served with Wholemeal Garlic & Herb bread, Seasonal Vegetables",
     "Tuesday": "Jacket Potato with Cheese & Beans & Fresh Salad",
-    "Wednesday": "Traditional Macaroni Cheese served with Wholemeal Garlic & Herb bread, Seasonal Vegetables",
+    "Wednesday": "Jacket Potato with Choice of Toppings served with Fresh Salad",
     "Thursday": "Broccoli & Cauliflower Cheese Bake, Roast Potatoes, Carrots, Broccoli, Yorkshire Pudding and Gravy",
-    "Friday": "Jacket Potato with Choice of Toppings served with Fresh Salad",
+    "Friday": "Quorn Sausage served with Chips, Garden Peas or Baked Beans & Ketchup",  
 }
 
 VEG_LUNCH3 = {
-    "Monday": "Vegetable Burger served with Chips, Garden Peas or Baked Beans & Ketchup",
-    "Tuesday": "Quorn Sausage Roast served with Potatoes, Carrots, Cabbage, Yorkshire Pudding and Gravy",
+    "Monday": "Pasta Twists with Homemade Tomato and Vegetable Sauce served with Fresh Salad and Chunky Bread",
+    "Tuesday": "Crispy Vegetable Bites served with Potatoes Wedges & Seasonal Vegetables",
     "Wednesday": "Jacket Potato with Choice of Toppings served with Fresh Salad",
-    "Thursday": "Crispy Vegetable Bites served with Potatoes Wedges & Seasonal Vegetables",
-    "Friday": "Pasta Twists with Homemade Tomato and Vegetable Sauce served with Fresh Salad and Chunky Bread",
-}
+    "Thursday": "Quorn Sausage Roast served with Potatoes, Carrots, Cabbage, Yorkshire Pudding and Gravy",
+    "Friday": "Vegetable Burger served with Chips, Garden Peas or Baked Beans & Ketchup",
+ }
 
 MENU_WEEKS_2026 = {
     "Week 1": ["19/01", "09/02", "09/03"],
