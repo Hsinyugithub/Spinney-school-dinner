@@ -18,7 +18,7 @@ SPINNEY_LUNCH2 = {
     "Monday": "Cheese & Potato Pie served with Peas & Sweetcorn",
     "Tuesday": "Jacket Potato with choice of toppings served with fresh salad",
     "Wednesday": "Fish Fingers served with Creamy Mash Potato & Spaghetti Hoops",
-    "Thursday": "Roast Chicken served with Potatoes, Yorkshire Pudding, Carrots, Cauliflower and Gravy",
+    "Thursday": "Roast Gammon served with Roast Potatoes, Carrots, Broccoli, Yorkshire Pudding and Gravy",
     "Friday": "Chicken Nuggets served with Chips, Garden Peas or Baked Beans & Ketchup",
 }
 
