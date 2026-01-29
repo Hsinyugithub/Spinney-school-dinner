@@ -3,54 +3,88 @@ import re
 from datetime import datetime, timedelta, date
 
 # -----------------------------
+# Mobile‑Friendly Styling
+# -----------------------------
+
+st.markdown("""
+    <style>
+    /* Reduce padding on mobile */
+    @media (max-width: 600px) {
+        .block-container {
+            padding: 0.8rem 1rem !important;
+        }
+
+        h1, h2, h3 {
+            font-size: 1.2rem !important;
+        }
+
+        label, .stRadio label {
+            font-size: 0.9rem !important;
+        }
+
+        input[type="date"] {
+            font-size: 0.9rem !important;
+        }
+    }
+
+    /* Smaller button style */
+    .small-button button {
+        padding: 0.4rem 0.7rem !important;
+        font-size: 0.9rem !important;
+        border-radius: 6px !important;
+    }
+    </style>
+""", unsafe_allow_html=True)
+
+# -----------------------------
 # Data Setup
 # -----------------------------
 
 SPINNEY_LUNCH1 = {
     "Monday": "Chicken Curry served with Savoury Vegetable Rice",
-    "Tuesday": "Pork Sausage in a Crusty Bun served with Jacket Wedges, Crispy Salad Sticks & a Selection of Sauces",
-    "Wednesday": "Savoury Mince served with Mash Potato & Seasonal Vegetables",
+    "Tuesday": "Pork Sausage in a Crusty Bun served with Jacket Wedges, Crispy Salad Sticks &amp; a Selection of Sauces",
+    "Wednesday": "Savoury Mince served with Mash Potato &amp; Seasonal Vegetables",
     "Thursday": "Roast Chicken served with Potatoes, Yorkshire Pudding, Carrots, Cauliflower and Gravy",
-    "Friday": "Fish Fingers or Salmon Fish Fingers served with Chips, Garden Peas or Baked Beans & Ketchup",
+    "Friday": "Fish Fingers or Salmon Fish Fingers served with Chips, Garden Peas or Baked Beans &amp; Ketchup",
 }
 
 SPINNEY_LUNCH2 = {
-    "Monday": "Cheese & Potato Pie served with Peas & Sweetcorn",
+    "Monday": "Cheese &amp; Potato Pie served with Peas &amp; Sweetcorn",
     "Tuesday": "Jacket Potato with choice of toppings served with fresh salad",
-    "Wednesday": "Fish Fingers served with Creamy Mash Potato & Spaghetti Hoops",
+    "Wednesday": "Fish Fingers served with Creamy Mash Potato &amp; Spaghetti Hoops",
     "Thursday": "Roast Gammon served with Roast Potatoes, Carrots, Broccoli, Yorkshire Pudding and Gravy",
-    "Friday": "Chicken Nuggets served with Chips, Garden Peas or Baked Beans & Ketchup",
+    "Friday": "Chicken Nuggets served with Chips, Garden Peas or Baked Beans &amp; Ketchup",
 }
 
 SPINNEY_LUNCH3 = {
-    "Monday": "Meat Wholemeal Pizza served with Baked Baby Potatoes, Peas & Sweetcorn",
-    "Tuesday": "Fish Fillet served with Potato Wedges & Seasonal Vegetables",
-    "Wednesday": "Beef Bolognese served with Spaghetti, Wholemeal Garlic & Herb bread, Seasonal Vegetables",
+    "Monday": "Meat Wholemeal Pizza served with Baked Baby Potatoes, Peas &amp; Sweetcorn",
+    "Tuesday": "Fish Fillet served with Potato Wedges &amp; Seasonal Vegetables",
+    "Wednesday": "Beef Bolognese served with Spaghetti, Wholemeal Garlic &amp; Herb bread, Seasonal Vegetables",
     "Thursday": "Roast Pork served with Potatoes, Carrots, Cabbage, Yorkshire Pudding and Gravy",
-    "Friday": "Chicken Burger served with Chips, Garden Peas or Baked Beans & Ketchup",
+    "Friday": "Chicken Burger served with Chips, Garden Peas or Baked Beans &amp; Ketchup",
 }
 
 VEG_LUNCH1 = {
-    "Monday": "Vegetable Nuggets served with Chips, Garden Peas or Baked Beans & Ketchup",
+    "Monday": "Vegetable Nuggets served with Chips, Garden Peas or Baked Beans &amp; Ketchup",
     "Tuesday": "Quorn Roast served with Yorkshire Pudding, Carrots, Cauliflower and Gravy",
     "Wednesday": "Jacket Potato with Choice of Toppings served with Fresh Salad",
-    "Thursday": "Quorn Sausage in a Crusty Bun served with Jacket Wedges, Crispy Salad Sticks & a Selection of Sauces",
+    "Thursday": "Quorn Sausage in a Crusty Bun served with Jacket Wedges, Crispy Salad Sticks &amp; a Selection of Sauces",
     "Friday": "Pasta Twists with Homemade Tomato and Vegetable Sauce served with Fresh Salad and Chunky Bread",
 }
 
 VEG_LUNCH2 = {
-    "Monday": "Quorn Sausage served with Chips, Garden Peas or Baked Beans & Ketchup",
-    "Tuesday": "Jacket Potato with Cheese & Beans & Fresh Salad",
-    "Wednesday": "Traditional Macaroni Cheese served with Wholemeal Garlic & Herb bread, Seasonal Vegetables",
-    "Thursday": "Broccoli & Cauliflower Cheese Bake, Roast Potatoes, Carrots, Broccoli, Yorkshire Pudding and Gravy",
+    "Monday": "Quorn Sausage served with Chips, Garden Peas or Baked Beans &amp; Ketchup",
+    "Tuesday": "Jacket Potato with Cheese &amp; Beans &amp; Fresh Salad",
+    "Wednesday": "Traditional Macaroni Cheese served with Wholemeal Garlic &amp; Herb bread, Seasonal Vegetables",
+    "Thursday": "Broccoli &amp; Cauliflower Cheese Bake, Roast Potatoes, Carrots, Broccoli, Yorkshire Pudding and Gravy",
     "Friday": "Jacket Potato with Choice of Toppings served with Fresh Salad",
 }
 
 VEG_LUNCH3 = {
-    "Monday": "Vegetable Burger served with Chips, Garden Peas or Baked Beans & Ketchup",
+    "Monday": "Vegetable Burger served with Chips, Garden Peas or Baked Beans &amp; Ketchup",
     "Tuesday": "Quorn Sausage Roast served with Potatoes, Carrots, Cabbage, Yorkshire Pudding and Gravy",
     "Wednesday": "Jacket Potato with Choice of Toppings served with Fresh Salad",
-    "Thursday": "Crispy Vegetable Bites served with Potatoes Wedges & Seasonal Vegetables",
+    "Thursday": "Crispy Vegetable Bites served with Potatoes Wedges &amp; Seasonal Vegetables",
     "Friday": "Pasta Twists with Homemade Tomato and Vegetable Sauce served with Fresh Salad and Chunky Bread",
 }
 
@@ -77,7 +111,6 @@ VEG_MAP = {
 # -----------------------------
 
 def expand_word_variants(words):
-    """Add simple plural variants for highlighting."""
     expanded = set()
     for w in words:
         w = w.lower()
@@ -88,7 +121,6 @@ def expand_word_variants(words):
     return list(expanded)
 
 def highlight_text_markdown(text, words):
-    """Highlight words using Streamlit-friendly Markdown."""
     if not words:
         return text
     pattern = "|".join(re.escape(w) for w in words)
@@ -100,7 +132,6 @@ def highlight_text_markdown(text, words):
     )
 
 def determine_menu_week(user_date):
-    """Determine which menu week a date belongs to."""
     for week_name, dates in MENU_WEEKS_2026.items():
         for date_str in dates:
             start = datetime.strptime(date_str + "/2026", "%d/%m/%Y")
@@ -110,14 +141,11 @@ def determine_menu_week(user_date):
     return None
 
 def get_meals_for_date(user_date):
-    """Return standard and vegetarian meals for a given date."""
     if user_date.weekday() >= 5:
-        return None, None  # Weekend
-
+        return None, None
     week_name = determine_menu_week(user_date)
     if not week_name:
         return None, None
-
     weekday = user_date.strftime("%A")
     return (
         LUNCH_MAP[week_name].get(weekday),
@@ -129,26 +157,62 @@ def get_meals_for_date(user_date):
 # -----------------------------
 
 st.title("🍽️ Spinney School Lunch Menu Finder")
-st.write("Choose a date to see the standard and vegetarian school lunch menus.")
 
+# --- Session date tracking ---
+if "selected_date" not in st.session_state:
+    st.session_state.selected_date = date.today()
 
+# --- Date input ---
 selected_date = st.date_input(
-    "Choose a date",
-    value=date.today(),      # 👈 sets today's date as default
+    "Choose a date (01/01/2026–31/03/2026)",
+    value=st.session_state.selected_date,
     min_value=datetime(2026, 1, 1),
     max_value=datetime(2026, 3, 31),
     format="DD/MM/YYYY",
 )
+st.session_state.selected_date = selected_date
+
+user_date = datetime.combine(st.session_state.selected_date, datetime.min.time())
+st.info(f"📅 That date is a **{user_date.strftime('%A')}**.")
+
+# -----------------------------
+# Buttons (mobile‑friendly)
+# -----------------------------
+
+col1, col2 = st.columns(2)
+
+with col1:
+    st.markdown('<div class="small-button">', unsafe_allow_html=True)
+    if st.button("← Previous Day", key="prev"):
+        prev_day = st.session_state.selected_date - timedelta(days=1)
+        if prev_day >= date(2026, 1, 1):
+            st.session_state.selected_date = prev_day
+            st.rerun()
+    st.markdown('</div>', unsafe_allow_html=True)
+
+with col2:
+    st.markdown('<div class="small-button">', unsafe_allow_html=True)
+    if st.button("Next Day →", key="next"):
+        next_day = st.session_state.selected_date + timedelta(days=1)
+        if next_day <= date(2026, 3, 31):
+            st.session_state.selected_date = next_day
+            st.rerun()
+    st.markdown('</div>', unsafe_allow_html=True)
+
+# -----------------------------
+# Menu Choice
+# -----------------------------
+
+menu_choice = st.radio(
+    "Choose which menu to show:",
+    ["Standard", "Vegetarian", "Both"],
+    index=2,
+)
 
 highlight_input = st.text_input("Words to highlight (comma separated):", "potato")
-
 highlight_words = expand_word_variants(
     [w.strip() for w in highlight_input.split(",") if w.strip()]
 )
-
-user_date = datetime.combine(selected_date, datetime.min.time())
-
-st.info(f"📅 That date is a **{user_date.strftime('%A')}**.")
 
 meal_std, meal_veg = get_meals_for_date(user_date)
 
@@ -156,28 +220,14 @@ if not meal_std and not meal_veg:
     st.warning("❌ No menu available for this date.")
     st.stop()
 
-col1, col2 = st.columns(2)
+# -----------------------------
+# Menu Display
+# -----------------------------
 
-with col1:
+if menu_choice in ["Standard", "Both"]:
     st.subheader("Standard Menu")
-    st.markdown(
-        highlight_text_markdown(meal_std, highlight_words)
-        if meal_std
-        else "No meal for this day."
-    )
+    st.markdown(highlight_text_markdown(meal_std, highlight_words))
 
-with col2:
+if menu_choice in ["Vegetarian", "Both"]:
     st.subheader("Vegetarian Menu")
-    st.markdown(
-        highlight_text_markdown(meal_veg, highlight_words)
-        if meal_veg
-        else "No vegetarian meal for this day."
-    )
-
-menu_text = (
-    f"{user_date.strftime('%A')}:\n"
-    f"Standard: {meal_std or 'N/A'}\n"
-    f"Vegetarian: {meal_veg or 'N/A'}"
-)
-
-
+    st.markdown(highlight_text_markdown(meal_veg, highlight_words))
