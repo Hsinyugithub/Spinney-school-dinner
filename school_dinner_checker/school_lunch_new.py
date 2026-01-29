@@ -3,6 +3,78 @@ import re
 from datetime import datetime, timedelta, date
 
 # -----------------------------
+# Page config (MUST be first)
+# -----------------------------
+st.set_page_config(
+    page_title="Spinney School Lunch Menu",
+    layout="wide",
+)
+
+# -----------------------------
+# iPhone-optimised CSS
+# -----------------------------
+st.markdown(
+    """
+    <style>
+    /* ---- Base font tuning (iPhone-friendly) ---- */
+    html, body, [class*="css"] {
+        font-size: 14px;
+        -webkit-text-size-adjust: 100%;
+    }
+
+    /* ---- Headings ---- */
+    h1 { 
+        font-size: 1.5rem; 
+        line-height: 1.2;
+        margin-bottom: 0.5rem;
+    }
+
+    h2 { 
+        font-size: 1.15rem; 
+        margin-top: 1rem;
+    }
+
+    h3 { 
+        font-size: 1.05rem; 
+    }
+
+    /* ---- Reduce vertical padding ---- */
+    .block-container {
+        padding-top: 0.75rem;
+        padding-bottom: 0.75rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    /* ---- Buttons: Apple tap target size ---- */
+    button {
+        min-height: 44px;
+        font-size: 0.95rem;
+    }
+
+    /* ---- Inputs ---- */
+    input {
+        font-size: 0.95rem;
+    }
+
+    /* ---- Alerts ---- */
+    .stAlert {
+        font-size: 0.9rem;
+        padding: 0.5rem;
+    }
+
+    /* ---- Slightly smaller text on small iPhones ---- */
+    @media (max-width: 430px) {
+        html, body {
+            font-size: 13.5px;
+        }
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
+# -----------------------------
 # Data Setup
 # -----------------------------
 
@@ -83,7 +155,8 @@ def expand_word_variants(words):
         expanded.add(w)
         if w.endswith("o"):
             expanded.add(w + "es")
-        expanded.add(w + "s")
+        else:
+            expanded.add(w + "s")
     return list(expanded)
 
 def highlight_text_markdown(text, words):
@@ -119,52 +192,53 @@ def get_meals_for_date(user_date):
     )
 
 # -----------------------------
-# Streamlit App
+# App UI
 # -----------------------------
 
 st.title("🍽️ Spinney School Lunch Menu Finder")
 
-# --- Session state for date ---
 if "selected_date" not in st.session_state:
     st.session_state.selected_date = date.today()
 
 selected_date = st.date_input(
-    "Choose a date (01/01/2026–31/03/2026)",
+    "📅 Pick a date (01/01/2026–31/03/2026)",
     value=st.session_state.selected_date,
-    min_value=datetime(2026, 1, 1),
-    max_value=datetime(2026, 3, 31),
+    min_value=date(2026, 1, 1),
+    max_value=date(2026, 3, 31),
     format="DD/MM/YYYY",
 )
 st.session_state.selected_date = selected_date
 
-user_date = datetime.combine(st.session_state.selected_date, datetime.min.time())
-st.info(f"📅 That date is a **{user_date.strftime('%A')}**.")
+user_date = datetime.combine(selected_date, datetime.min.time())
+st.caption(f"📅 {user_date.strftime('%A')}")
 
 # -----------------------------
-# Previous / Next Day Buttons
+# Navigation Buttons
 # -----------------------------
 
-col_prev, col_next = st.columns(2)
+if st.button("⬅️ Previous day", use_container_width=True):
+    prev_day = selected_date - timedelta(days=1)
+    if prev_day >= date(2026, 1, 1):
+        st.session_state.selected_date = prev_day
+        st.rerun()
 
-with col_prev:
-    if st.button("← Previous Day"):
-        prev_day = st.session_state.selected_date - timedelta(days=1)
-        if prev_day >= date(2026, 1, 1):
-            st.session_state.selected_date = prev_day
-            st.rerun()
-
-with col_next:
-    if st.button("Next Day →"):
-        next_day = st.session_state.selected_date + timedelta(days=1)
-        if next_day <= date(2026, 3, 31):
-            st.session_state.selected_date = next_day
-            st.rerun()
+if st.button("Next day ➡️", use_container_width=True):
+    next_day = selected_date + timedelta(days=1)
+    if next_day <= date(2026, 3, 31):
+        st.session_state.selected_date = next_day
+        st.rerun()
 
 # -----------------------------
 # Highlight Input
 # -----------------------------
 
-highlight_input = st.text_input("Words to highlight (comma separated):", "potato")
+with st.expander("🔍 Highlight words (potato by default)"):
+    highlight_input = st.text_input(
+        "Comma separated words",
+        "potato",
+        label_visibility="collapsed",
+    )
+
 highlight_words = expand_word_variants(
     [w.strip() for w in highlight_input.split(",") if w.strip()]
 )
@@ -176,7 +250,7 @@ if not meal_std and not meal_veg:
     st.stop()
 
 # -----------------------------
-# Menu Display (Always show both)
+# Menu Display
 # -----------------------------
 
 st.subheader("Standard Menu")
