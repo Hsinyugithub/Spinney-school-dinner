@@ -8,7 +8,16 @@ from datetime import datetime, timedelta, date
 
 st.markdown("""
     <style>
-    /* Reduce padding on mobile */
+
+    /* Smaller NEXT / PREVIOUS buttons */
+    .small-button button {
+        padding: 0.2rem 0.4rem !important;
+        font-size: 0.75rem !important;
+        border-radius: 4px !important;
+        min-height: 1.4rem !important;
+    }
+
+    /* Mobile layout adjustments */
     @media (max-width: 600px) {
         .block-container {
             padding: 0.8rem 1rem !important;
@@ -18,7 +27,7 @@ st.markdown("""
             font-size: 1.2rem !important;
         }
 
-        label, .stRadio label {
+        label {
             font-size: 0.9rem !important;
         }
 
@@ -27,12 +36,6 @@ st.markdown("""
         }
     }
 
-    /* Smaller button style */
-    .small-button button {
-        padding: 0.4rem 0.7rem !important;
-        font-size: 0.9rem !important;
-        border-radius: 6px !important;
-    }
     </style>
 """, unsafe_allow_html=True)
 
@@ -42,49 +45,49 @@ st.markdown("""
 
 SPINNEY_LUNCH1 = {
     "Monday": "Chicken Curry served with Savoury Vegetable Rice",
-    "Tuesday": "Pork Sausage in a Crusty Bun served with Jacket Wedges, Crispy Salad Sticks &amp; a Selection of Sauces",
-    "Wednesday": "Savoury Mince served with Mash Potato &amp; Seasonal Vegetables",
+    "Tuesday": "Pork Sausage in a Crusty Bun served with Jacket Wedges, Crispy Salad Sticks & a Selection of Sauces",
+    "Wednesday": "Savoury Mince served with Mash Potato & Seasonal Vegetables",
     "Thursday": "Roast Chicken served with Potatoes, Yorkshire Pudding, Carrots, Cauliflower and Gravy",
-    "Friday": "Fish Fingers or Salmon Fish Fingers served with Chips, Garden Peas or Baked Beans &amp; Ketchup",
+    "Friday": "Fish Fingers or Salmon Fish Fingers served with Chips, Garden Peas or Baked Beans & Ketchup",
 }
 
 SPINNEY_LUNCH2 = {
-    "Monday": "Cheese &amp; Potato Pie served with Peas &amp; Sweetcorn",
+    "Monday": "Cheese & Potato Pie served with Peas & Sweetcorn",
     "Tuesday": "Jacket Potato with choice of toppings served with fresh salad",
-    "Wednesday": "Fish Fingers served with Creamy Mash Potato &amp; Spaghetti Hoops",
+    "Wednesday": "Fish Fingers served with Creamy Mash Potato & Spaghetti Hoops",
     "Thursday": "Roast Gammon served with Roast Potatoes, Carrots, Broccoli, Yorkshire Pudding and Gravy",
-    "Friday": "Chicken Nuggets served with Chips, Garden Peas or Baked Beans &amp; Ketchup",
+    "Friday": "Chicken Nuggets served with Chips, Garden Peas or Baked Beans & Ketchup",
 }
 
 SPINNEY_LUNCH3 = {
-    "Monday": "Meat Wholemeal Pizza served with Baked Baby Potatoes, Peas &amp; Sweetcorn",
-    "Tuesday": "Fish Fillet served with Potato Wedges &amp; Seasonal Vegetables",
-    "Wednesday": "Beef Bolognese served with Spaghetti, Wholemeal Garlic &amp; Herb bread, Seasonal Vegetables",
+    "Monday": "Meat Wholemeal Pizza served with Baked Baby Potatoes, Peas & Sweetcorn",
+    "Tuesday": "Fish Fillet served with Potato Wedges & Seasonal Vegetables",
+    "Wednesday": "Beef Bolognese served with Spaghetti, Wholemeal Garlic & Herb bread, Seasonal Vegetables",
     "Thursday": "Roast Pork served with Potatoes, Carrots, Cabbage, Yorkshire Pudding and Gravy",
-    "Friday": "Chicken Burger served with Chips, Garden Peas or Baked Beans &amp; Ketchup",
+    "Friday": "Chicken Burger served with Chips, Garden Peas or Baked Beans & Ketchup",
 }
 
 VEG_LUNCH1 = {
-    "Monday": "Vegetable Nuggets served with Chips, Garden Peas or Baked Beans &amp; Ketchup",
+    "Monday": "Vegetable Nuggets served with Chips, Garden Peas or Baked Beans & Ketchup",
     "Tuesday": "Quorn Roast served with Yorkshire Pudding, Carrots, Cauliflower and Gravy",
     "Wednesday": "Jacket Potato with Choice of Toppings served with Fresh Salad",
-    "Thursday": "Quorn Sausage in a Crusty Bun served with Jacket Wedges, Crispy Salad Sticks &amp; a Selection of Sauces",
+    "Thursday": "Quorn Sausage in a Crusty Bun served with Jacket Wedges, Crispy Salad Sticks & a Selection of Sauces",
     "Friday": "Pasta Twists with Homemade Tomato and Vegetable Sauce served with Fresh Salad and Chunky Bread",
 }
 
 VEG_LUNCH2 = {
-    "Monday": "Quorn Sausage served with Chips, Garden Peas or Baked Beans &amp; Ketchup",
-    "Tuesday": "Jacket Potato with Cheese &amp; Beans &amp; Fresh Salad",
-    "Wednesday": "Traditional Macaroni Cheese served with Wholemeal Garlic &amp; Herb bread, Seasonal Vegetables",
-    "Thursday": "Broccoli &amp; Cauliflower Cheese Bake, Roast Potatoes, Carrots, Broccoli, Yorkshire Pudding and Gravy",
+    "Monday": "Quorn Sausage served with Chips, Garden Peas or Baked Beans & Ketchup",
+    "Tuesday": "Jacket Potato with Cheese & Beans & Fresh Salad",
+    "Wednesday": "Traditional Macaroni Cheese served with Wholemeal Garlic & Herb bread, Seasonal Vegetables",
+    "Thursday": "Broccoli & Cauliflower Cheese Bake, Roast Potatoes, Carrots, Broccoli, Yorkshire Pudding and Gravy",
     "Friday": "Jacket Potato with Choice of Toppings served with Fresh Salad",
 }
 
 VEG_LUNCH3 = {
-    "Monday": "Vegetable Burger served with Chips, Garden Peas or Baked Beans &amp; Ketchup",
+    "Monday": "Vegetable Burger served with Chips, Garden Peas or Baked Beans & Ketchup",
     "Tuesday": "Quorn Sausage Roast served with Potatoes, Carrots, Cabbage, Yorkshire Pudding and Gravy",
     "Wednesday": "Jacket Potato with Choice of Toppings served with Fresh Salad",
-    "Thursday": "Crispy Vegetable Bites served with Potatoes Wedges &amp; Seasonal Vegetables",
+    "Thursday": "Crispy Vegetable Bites served with Potatoes Wedges & Seasonal Vegetables",
     "Friday": "Pasta Twists with Homemade Tomato and Vegetable Sauce served with Fresh Salad and Chunky Bread",
 }
 
@@ -176,7 +179,7 @@ user_date = datetime.combine(st.session_state.selected_date, datetime.min.time()
 st.info(f"📅 That date is a **{user_date.strftime('%A')}**.")
 
 # -----------------------------
-# Buttons (mobile‑friendly)
+# Navigation Buttons (extra-small)
 # -----------------------------
 
 col1, col2 = st.columns(2)
@@ -200,19 +203,17 @@ with col2:
     st.markdown('</div>', unsafe_allow_html=True)
 
 # -----------------------------
-# Menu Choice
+# Highlighting
 # -----------------------------
-
-menu_choice = st.radio(
-    "Choose which menu to show:",
-    ["Standard", "Vegetarian", "Both"],
-    index=2,
-)
 
 highlight_input = st.text_input("Words to highlight (comma separated):", "potato")
 highlight_words = expand_word_variants(
     [w.strip() for w in highlight_input.split(",") if w.strip()]
 )
+
+# -----------------------------
+# Fetch Meals
+# -----------------------------
 
 meal_std, meal_veg = get_meals_for_date(user_date)
 
@@ -221,13 +222,11 @@ if not meal_std and not meal_veg:
     st.stop()
 
 # -----------------------------
-# Menu Display
+# Display Menus (Always Both)
 # -----------------------------
 
-if menu_choice in ["Standard", "Both"]:
-    st.subheader("Standard Menu")
-    st.markdown(highlight_text_markdown(meal_std, highlight_words))
+st.subheader("Standard Menu")
+st.markdown(highlight_text_markdown(meal_std, highlight_words))
 
-if menu_choice in ["Vegetarian", "Both"]:
-    st.subheader("Vegetarian Menu")
-    st.markdown(highlight_text_markdown(meal_veg, highlight_words))
+st.subheader("Vegetarian Menu")
+st.markdown(highlight_text_markdown(meal_veg, highlight_words))
