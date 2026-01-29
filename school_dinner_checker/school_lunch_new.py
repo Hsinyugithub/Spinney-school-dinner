@@ -31,28 +31,28 @@ SPINNEY_LUNCH3 = {
 }
 
 VEG_LUNCH1 = {
-    "Monday": "Pasta Twists with Homemade Tomato and Vegetable Sauce served with Fresh Salad and Chunky Bread",
-    "Tuesday": "Quorn Sausage in a Crusty Bun served with Jacket Wedges, Crispy Salad Sticks & a Selection of Sauces",
+    "Monday": "Vegetable Nuggets served with Chips, Garden Peas or Baked Beans & Ketchup",
+    "Tuesday": "Quorn Roast served with Yorkshire Pudding, Carrots, Cauliflower and Gravy",
     "Wednesday": "Jacket Potato with Choice of Toppings served with Fresh Salad",
-    "Thursday": "Quorn Roast served with Yorkshire Pudding, Carrots, Cauliflower and Gravy",
-    "Friday": "Vegetable Nuggets served with Chips, Garden Peas or Baked Beans & Ketchup",   
+    "Thursday": "Quorn Sausage in a Crusty Bun served with Jacket Wedges, Crispy Salad Sticks & a Selection of Sauces",
+    "Friday": "Pasta Twists with Homemade Tomato and Vegetable Sauce served with Fresh Salad and Chunky Bread",
 }
 
 VEG_LUNCH2 = {
-    "Monday": "Traditional Macaroni Cheese served with Wholemeal Garlic & Herb bread, Seasonal Vegetables",
+    "Monday": "Quorn Sausage served with Chips, Garden Peas or Baked Beans & Ketchup",
     "Tuesday": "Jacket Potato with Cheese & Beans & Fresh Salad",
-    "Wednesday": "Jacket Potato with Choice of Toppings served with Fresh Salad",
+    "Wednesday": "Traditional Macaroni Cheese served with Wholemeal Garlic & Herb bread, Seasonal Vegetables",
     "Thursday": "Broccoli & Cauliflower Cheese Bake, Roast Potatoes, Carrots, Broccoli, Yorkshire Pudding and Gravy",
-    "Friday": "Quorn Sausage served with Chips, Garden Peas or Baked Beans & Ketchup",  
+    "Friday": "Jacket Potato with Choice of Toppings served with Fresh Salad",
 }
 
 VEG_LUNCH3 = {
-    "Monday": "Pasta Twists with Homemade Tomato and Vegetable Sauce served with Fresh Salad and Chunky Bread",
-    "Tuesday": "Crispy Vegetable Bites served with Potatoes Wedges & Seasonal Vegetables",
+    "Monday": "Vegetable Burger served with Chips, Garden Peas or Baked Beans & Ketchup",
+    "Tuesday": "Quorn Sausage Roast served with Potatoes, Carrots, Cabbage, Yorkshire Pudding and Gravy",
     "Wednesday": "Jacket Potato with Choice of Toppings served with Fresh Salad",
-    "Thursday": "Quorn Sausage Roast served with Potatoes, Carrots, Cabbage, Yorkshire Pudding and Gravy",
-    "Friday": "Vegetable Burger served with Chips, Garden Peas or Baked Beans & Ketchup",
- }
+    "Thursday": "Crispy Vegetable Bites served with Potatoes Wedges & Seasonal Vegetables",
+    "Friday": "Pasta Twists with Homemade Tomato and Vegetable Sauce served with Fresh Salad and Chunky Bread",
+}
 
 MENU_WEEKS_2026 = {
     "Week 1": ["19/01", "09/02", "09/03"],
@@ -77,7 +77,7 @@ VEG_MAP = {
 # -----------------------------
 
 def expand_word_variants(words):
-    """Add plural variants for highlighting (potato → potatoes, apple → apples)."""
+    """Add simple plural variants for highlighting."""
     expanded = set()
     for w in words:
         w = w.lower()
@@ -88,23 +88,19 @@ def expand_word_variants(words):
     return list(expanded)
 
 def highlight_text_markdown(text, words):
-    """Highlight words in Streamlit using Markdown."""
+    """Highlight words using Streamlit-friendly Markdown."""
     if not words:
         return text
     pattern = "|".join(re.escape(w) for w in words)
-    return re.sub(pattern, lambda m: f"**:orange[{m.group(0)}]:**", text, flags=re.IGNORECASE)
-
-def parse_user_date(date_str):
-    """Parse date dd/mm or dd/mm/yyyy, default year 2026."""
-    try:
-        if len(date_str) == 5:
-            return datetime.strptime(date_str + "/2026", "%d/%m/%Y")
-        return datetime.strptime(date_str, "%d/%m/%Y")
-    except ValueError:
-        return None
+    return re.sub(
+        pattern,
+        lambda m: f"**:orange[{m.group(0)}]:**",
+        text,
+        flags=re.IGNORECASE,
+    )
 
 def determine_menu_week(user_date):
-    """Find the menu week for a given date."""
+    """Determine which menu week a date belongs to."""
     for week_name, dates in MENU_WEEKS_2026.items():
         for date_str in dates:
             start = datetime.strptime(date_str + "/2026", "%d/%m/%Y")
@@ -114,48 +110,72 @@ def determine_menu_week(user_date):
     return None
 
 def get_meals_for_date(user_date):
-    """Return both standard and vegetarian meals for a date."""
+    """Return standard and vegetarian meals for a given date."""
     if user_date.weekday() >= 5:
-        return None, None  # No meals on weekends
+        return None, None  # Weekend
+
     week_name = determine_menu_week(user_date)
     if not week_name:
         return None, None
+
     weekday = user_date.strftime("%A")
-    return LUNCH_MAP[week_name].get(weekday), VEG_MAP[week_name].get(weekday)
+    return (
+        LUNCH_MAP[week_name].get(weekday),
+        VEG_MAP[week_name].get(weekday),
+    )
 
 # -----------------------------
 # Streamlit App
 # -----------------------------
 
 st.title("🍽️ Spinney School Lunch Menu Finder")
-st.write("Enter a date to see the lunch served on that day (standard & vegetarian).")
+st.write("Choose a date to see the standard and vegetarian school lunch menus.")
 
-date_input = st.text_input("Enter a date (dd/mm or dd/mm/yyyy):")
+selected_date = st.date_input(
+    "Choose a date",
+    min_value=datetime(2026, 1, 1),
+    max_value=datetime(2026, 3, 31),
+    format="DD/MM/YYYY",
+)
+
 highlight_input = st.text_input("Words to highlight (comma separated):", "potato")
 
-if date_input:
-    highlight_words = expand_word_variants([w.strip() for w in highlight_input.split(",") if w.strip()])
-    user_date = parse_user_date(date_input)
+highlight_words = expand_word_variants(
+    [w.strip() for w in highlight_input.split(",") if w.strip()]
+)
 
-    if not user_date:
-        st.error("❌ Invalid date. Use dd/mm or dd/mm/yyyy.")
-        st.stop()
+user_date = datetime.combine(selected_date, datetime.min.time())
 
-    st.info(f"📅 That date is a **{user_date.strftime('%A')}**.")
+st.info(f"📅 That date is a **{user_date.strftime('%A')}**.")
 
-    meal_std, meal_veg = get_meals_for_date(user_date)
+meal_std, meal_veg = get_meals_for_date(user_date)
 
-    if not meal_std and not meal_veg:
-        st.warning("❌ No menu available for this date.")
-        st.stop()
+if not meal_std and not meal_veg:
+    st.warning("❌ No menu available for this date.")
+    st.stop()
 
-    col1, col2 = st.columns(2)
-    with col1:
-        st.subheader("Standard Menu")
-        st.markdown(highlight_text_markdown(meal_std, highlight_words) if meal_std else "No meal for this day.")
+col1, col2 = st.columns(2)
 
-    with col2:
-        st.subheader("Vegetarian Menu")
-        st.markdown(highlight_text_markdown(meal_veg, highlight_words) if meal_veg else "No meal for this day.")
+with col1:
+    st.subheader("Standard Menu")
+    st.markdown(
+        highlight_text_markdown(meal_std, highlight_words)
+        if meal_std
+        else "No meal for this day."
+    )
 
-   
+with col2:
+    st.subheader("Vegetarian Menu")
+    st.markdown(
+        highlight_text_markdown(meal_veg, highlight_words)
+        if meal_veg
+        else "No vegetarian meal for this day."
+    )
+
+menu_text = (
+    f"{user_date.strftime('%A')}:\n"
+    f"Standard: {meal_std or 'N/A'}\n"
+    f"Vegetarian: {meal_veg or 'N/A'}"
+)
+
+
