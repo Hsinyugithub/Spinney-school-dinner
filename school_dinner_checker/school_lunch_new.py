@@ -1,6 +1,6 @@
 import streamlit as st
 import re
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, date
 
 # -----------------------------
 # Data Setup
@@ -131,8 +131,10 @@ def get_meals_for_date(user_date):
 st.title("🍽️ Spinney School Lunch Menu Finder")
 st.write("Choose a date to see the standard and vegetarian school lunch menus.")
 
+
 selected_date = st.date_input(
     "Choose a date",
+    value=date.today(),      # 👈 sets today's date as default
     min_value=datetime(2026, 1, 1),
     max_value=datetime(2026, 3, 31),
     format="DD/MM/YYYY",

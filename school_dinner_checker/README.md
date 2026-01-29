@@ -9,7 +9,6 @@ A simple Streamlit web app to find the **school lunch menu** for any given date.
 - Enter a date (`dd/mm` or `dd/mm/yyyy`) to see lunch menus.
 - Displays both **Standard** and **Vegetarian** meals.
 - Highlight specific words or ingredients (e.g., "potato") in the menu.
-- Download the menu for the selected date as a text file.
 - Automatically handles plural variants when highlighting (e.g., `potato → potatoes`).
 - Weekend detection: shows a message if no meals are available.
 
