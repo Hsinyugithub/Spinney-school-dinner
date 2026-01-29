@@ -3,22 +3,46 @@ import re
 from datetime import datetime, timedelta, date
 
 # -----------------------------
-# Mobile‑Friendly Styling
+# Mobile‑Friendly + Button & Info Box Styling
 # -----------------------------
 
 st.markdown("""
     <style>
 
-    /* Smaller NEXT / PREVIOUS buttons */
+    /* EXTRA SMALL NAVIGATION BUTTONS */
     .small-button button {
         padding: 0.2rem 0.4rem !important;
         font-size: 0.75rem !important;
         border-radius: 4px !important;
         min-height: 1.4rem !important;
+        width: 100% !important;
     }
 
-    /* Mobile layout adjustments */
+    /* SHRINK ENTIRE "That date is a..." INFO BOX */
+    .stAlert {
+        padding: 0.3rem 0.5rem !important;
+        margin-top: 0.3rem !important;
+        margin-bottom: 0.8rem !important;
+        border-radius: 5px !important;
+        font-size: 1.00rem !important;
+        line-height: 1.05rem !important;
+    }
+
+    .stAlert p {
+        font-size: 0.75rem !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    /* Shrink alert icon */
+    .stAlert [data-testid="stMarkdownContainer"] svg {
+        width: 0.9rem !important;
+        height: 0.9rem !important;
+    }
+
+    /* FORCE BUTTON COLUMNS SIDE-BY-SIDE ON MOBILE */
     @media (max-width: 600px) {
+
         .block-container {
             padding: 0.8rem 1rem !important;
         }
@@ -33,6 +57,16 @@ st.markdown("""
 
         input[type="date"] {
             font-size: 0.9rem !important;
+        }
+
+        .stColumns {
+            display: flex !important;
+            flex-direction: row !important;
+            gap: 0.25rem !important;
+        }
+
+        .stColumn {
+            flex: 1 !important;
         }
     }
 
@@ -97,17 +131,8 @@ MENU_WEEKS_2026 = {
     "Week 3": ["02/02", "02/03", "23/03"],
 }
 
-LUNCH_MAP = {
-    "Week 1": SPINNEY_LUNCH1,
-    "Week 2": SPINNEY_LUNCH2,
-    "Week 3": SPINNEY_LUNCH3,
-}
-
-VEG_MAP = {
-    "Week 1": VEG_LUNCH1,
-    "Week 2": VEG_LUNCH2,
-    "Week 3": VEG_LUNCH3,
-}
+LUNCH_MAP = {"Week 1": SPINNEY_LUNCH1, "Week 2": SPINNEY_LUNCH2, "Week 3": SPINNEY_LUNCH3}
+VEG_MAP = {"Week 1": VEG_LUNCH1, "Week 2": VEG_LUNCH2, "Week 3": VEG_LUNCH3}
 
 # -----------------------------
 # Helper Functions
@@ -124,22 +149,14 @@ def expand_word_variants(words):
     return list(expanded)
 
 def highlight_text_markdown(text, words):
-    if not words:
-        return text
     pattern = "|".join(re.escape(w) for w in words)
-    return re.sub(
-        pattern,
-        lambda m: f"**:orange[{m.group(0)}]:**",
-        text,
-        flags=re.IGNORECASE,
-    )
+    return re.sub(pattern, lambda m: f"**:orange[{m.group(0)}]:**", text, flags=re.IGNORECASE)
 
 def determine_menu_week(user_date):
     for week_name, dates in MENU_WEEKS_2026.items():
         for date_str in dates:
             start = datetime.strptime(date_str + "/2026", "%d/%m/%Y")
-            end = start + timedelta(days=4)
-            if start <= user_date <= end:
+            if start <= user_date <= start + timedelta(days=4):
                 return week_name
     return None
 
@@ -150,10 +167,7 @@ def get_meals_for_date(user_date):
     if not week_name:
         return None, None
     weekday = user_date.strftime("%A")
-    return (
-        LUNCH_MAP[week_name].get(weekday),
-        VEG_MAP[week_name].get(weekday),
-    )
+    return LUNCH_MAP[week_name].get(weekday), VEG_MAP[week_name].get(weekday)
 
 # -----------------------------
 # Streamlit App
@@ -161,11 +175,9 @@ def get_meals_for_date(user_date):
 
 st.title("🍽️ Spinney School Lunch Menu Finder")
 
-# --- Session date tracking ---
 if "selected_date" not in st.session_state:
     st.session_state.selected_date = date.today()
 
-# --- Date input ---
 selected_date = st.date_input(
     "Choose a date (01/01/2026–31/03/2026)",
     value=st.session_state.selected_date,
@@ -173,37 +185,38 @@ selected_date = st.date_input(
     max_value=datetime(2026, 3, 31),
     format="DD/MM/YYYY",
 )
-st.session_state.selected_date = selected_date
 
-user_date = datetime.combine(st.session_state.selected_date, datetime.min.time())
+st.session_state.selected_date = selected_date
+user_date = datetime.combine(selected_date, datetime.min.time())
+
 st.info(f"📅 That date is a **{user_date.strftime('%A')}**.")
 
 # -----------------------------
-# Navigation Buttons (extra-small)
+# Navigation Buttons
 # -----------------------------
 
 col1, col2 = st.columns(2)
 
 with col1:
     st.markdown('<div class="small-button">', unsafe_allow_html=True)
-    if st.button("← Previous Day", key="prev"):
-        prev_day = st.session_state.selected_date - timedelta(days=1)
-        if prev_day >= date(2026, 1, 1):
-            st.session_state.selected_date = prev_day
+    if st.button("← Previous Day"):
+        new_day = selected_date - timedelta(days=1)
+        if new_day >= date(2026, 1, 1):
+            st.session_state.selected_date = new_day
             st.rerun()
     st.markdown('</div>', unsafe_allow_html=True)
 
 with col2:
     st.markdown('<div class="small-button">', unsafe_allow_html=True)
-    if st.button("Next Day →", key="next"):
-        next_day = st.session_state.selected_date + timedelta(days=1)
-        if next_day <= date(2026, 3, 31):
-            st.session_state.selected_date = next_day
+    if st.button("Next Day →"):
+        new_day = selected_date + timedelta(days=1)
+        if new_day <= date(2026, 3, 31):
+            st.session_state.selected_date = new_day
             st.rerun()
     st.markdown('</div>', unsafe_allow_html=True)
 
 # -----------------------------
-# Highlighting
+# Highlight Input
 # -----------------------------
 
 highlight_input = st.text_input("Words to highlight (comma separated):", "potato")
@@ -212,21 +225,17 @@ highlight_words = expand_word_variants(
 )
 
 # -----------------------------
-# Fetch Meals
+# Display Meals
 # -----------------------------
 
 meal_std, meal_veg = get_meals_for_date(user_date)
 
-if not meal_std and not meal_veg:
+if not meal_std:
     st.warning("❌ No menu available for this date.")
-    st.stop()
+else:
+    st.subheader("Standard Menu")
+    st.markdown(highlight_text_markdown(meal_std, highlight_words))
 
-# -----------------------------
-# Display Menus (Always Both)
-# -----------------------------
-
-st.subheader("Standard Menu")
-st.markdown(highlight_text_markdown(meal_std, highlight_words))
-
-st.subheader("Vegetarian Menu")
-st.markdown(highlight_text_markdown(meal_veg, highlight_words))
+if meal_veg:
+    st.subheader("Vegetarian Menu")
+    st.markdown(highlight_text_markdown(meal_veg, highlight_words))
