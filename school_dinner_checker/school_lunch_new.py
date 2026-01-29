@@ -123,14 +123,13 @@ def get_meals_for_date(user_date):
 # -----------------------------
 
 st.title("🍽️ Spinney School Lunch Menu Finder")
-st.write("Choose a date to see the school lunch menus (01/01/2026–31/03/2026).")
 
 # --- Session state for date ---
 if "selected_date" not in st.session_state:
     st.session_state.selected_date = date.today()
 
 selected_date = st.date_input(
-    "Choose a date",
+    "Choose a date (01/01/2026–31/03/2026)",
     value=st.session_state.selected_date,
     min_value=datetime(2026, 1, 1),
     max_value=datetime(2026, 3, 31),
