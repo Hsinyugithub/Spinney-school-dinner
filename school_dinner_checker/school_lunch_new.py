@@ -252,13 +252,13 @@ if not meal_std and not meal_veg:
 # Menu Display
 # -----------------------------
 
-st.subheader("Standard Menu")
+st.subheader("1st Choice Menu")
 st.markdown(
     highlight_text_markdown(meal_std, highlight_words)
     if meal_std else "No meal for this day."
 )
 
-st.subheader("Vegetarian Menu")
+st.subheader("2nd Choice Menu")
 st.markdown(
     highlight_text_markdown(meal_veg, highlight_words)
     if meal_veg else "No vegetarian meal for this day."
