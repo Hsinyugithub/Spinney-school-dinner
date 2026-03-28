@@ -79,42 +79,42 @@ st.markdown(
 # -----------------------------
 
 SPINNEY_LUNCH1_CHOICE_1 = {
-    "Monday": "Rainbow Wholemeal Pizza served with Jacket Potato Wedges, Crunchy Carrot & Cucumber Sticks",
-    "Tuesday": "Jacket Potato with Choice of Toppings served with Fresh Salad",
-    "Wednesday": "Roasted Vegetable & Lentil Lasagne served with Wholemeal Garlic & Herb Bread, Mixed Vegetables or Salad",
-    "Thursday": "Quorn Fillet served with Roast Potatoes, Carrots, Cabbage, Yorkshire Pudding and Gravy",
+    "Monday": "Rainbow Wholemeal Pizza served with Jacket Potato Wedges, Crunchy Carrot & Cucumber Sticks(V)",
+    "Tuesday": "Jacket Potato with Choice of Toppings served with Fresh Salad(V)",
+    "Wednesday": "Roasted Vegetable & Lentil Lasagne served with Wholemeal Garlic & Herb Bread, Mixed Vegetables or Salad(V)",
+    "Thursday": "Quorn Fillet served with Roast Potatoes, Carrots, Cabbage, Yorkshire Pudding and Gravy(V)",
     "Friday": "Fish Fingers or Salmon Fish Fingers served with Chips, Garden Peas or Baked Beans & Ketchup",
 }
 SPINNEY_LUNCH2_CHOICE_1 = {
-    "Monday": "Butternut Squash & Cauliflower Korma served with Rice, Naan Bread finger & Seasonal Vegetables",
-    "Tuesday": "Margherita Wholemeal Pizza Pinwheel served with Baked Potato Wedges, Peas & Sweetcorn",
-    "Wednesday": "Powerballs in a Tomato Sauce served with Pasta, Homemade Wholemeal Garlic & Herb Bread and Seasonal Vegetables",
-    "Thursday": "Crispy Topped Baked Lentil Roast served with Potatoes, Yorkshire Pudding, Carrots, Broccoli and Gravy",
+    "Monday": "Butternut Squash & Cauliflower Korma served with Rice, Naan Bread finger & Seasonal Vegetables(V)",
+    "Tuesday": "Margherita Wholemeal Pizza Pinwheel served with Baked Potato Wedges, Peas & Sweetcorn(V)",
+    "Wednesday": "Powerballs in a Tomato Sauce served with Pasta, Homemade Wholemeal Garlic & Herb Bread and Seasonal Vegetables(VE)",
+    "Thursday": "Crispy Topped Baked Lentil Roast served with Potatoes, Yorkshire Pudding, Carrots, Broccoli and Gravy(V)",
     "Friday": "Breaded Fish Fillet served with Chips, Garden Peas or Baked Beans & Ketchup",
 }
 SPINNEY_LUNCH3_CHOICE_1 = {
-    "Monday": "Mild Tex Mex Bean Taco served with Savoury Vegetable Rice",
-    "Tuesday": "Jacket Potato with Choice of Toppings served with Fresh Salad",
-    "Wednesday": "Big Bold Vegetable & Lentil Bolognese served with Spaghetti, Garlic & Herb Bread and Seasonal Vegetables",
-    "Thursday": "Herby Quorn Sausage served with Roast Potatoes, Carrots, Broccoli, Yorkshire Pudding and Gravy",
-    "Friday": "Vegetable Burger in a Bun served with Chips, Garden Peas or Baked Beans & Ketchup",
+    "Monday": "Mild Tex Mex Bean Taco served with Savoury Vegetable Rice(VE)",
+    "Tuesday": "Jacket Potato with Choice of Toppings served with Fresh Salad(V)",
+    "Wednesday": "Big Bold Vegetable & Lentil Bolognese served with Spaghetti, Garlic & Herb Bread and Seasonal Vegetables(VE)",
+    "Thursday": "Herby Quorn Sausage served with Roast Potatoes, Carrots, Broccoli, Yorkshire Pudding and Gravy(V)",
+    "Friday": "Vegetable Burger in a Bun served with Chips, Garden Peas or Baked Beans & Ketchup(V)",
 }
 SPINNEY_LUNCH1_CHOICE_2 = {
-    "Monday": "Jambalaya Jamboree served with Crusty Wholemeal Bread & Salad",
+    "Monday": "Jambalaya Jamboree served with Crusty Wholemeal Bread & Salad(VE)",
     "Tuesday": "Baked Pork Sausage Roll served with Seasoned Cubed Potatoes & Baked Beans or Fresh Salad",
     "Wednesday": "Homemade Beef Lasagne served with Wholemeal Garlic & Herb Bread, Mixed Vegetables or Salad",
     "Thursday": "Roast Chicken served with Roast Potatoes, Carrots, Cabbage, Yorkshire Pudding and Gravy",
-    "Friday": "Quorn Sausage served with Chips, Garden Peas or Baked Beans & Ketchup",
+    "Friday": "Quorn Sausage served with Chips, Garden Peas or Baked Beans & Ketchup(VE)",
 }
 SPINNEY_LUNCH2_CHOICE_2 = {
-    "Monday": "Traditional Macaroni Cheese served with Wholemeal Garlic & Herb Bread and Seasonal Vegetables",
+    "Monday": "Traditional Macaroni Cheese served with Wholemeal Garlic & Herb Bread and Seasonal Vegetables(V)",
     "Tuesday": "Chicken Wholemeal Pizza Pinwheel served with Baked Potato Wedges, Peas & Sweetcorn",
     "Wednesday": "Meatballs in a Tomato Sauce served with Pasta, Homemade Wholemeal Garlic & Herb Bread and Seasonal Vegetables",
     "Thursday": "Roast Chicken served with Potatoes, Yorkshire Pudding, Carrots, Broccoli and Gravy",
-    "Friday": "Vegetable Nuggets served with Chips, Garden Peas or Baked Beans & Ketchup",
+    "Friday": "Vegetable Nuggets served with Chips, Garden Peas or Baked Beans & Ketchup(VE)",
 }
 SPINNEY_LUNCH3_CHOICE_2 = {
-    "Monday": "Margherita Wholemeal Pizza served with Savoury Vegetable Rice Salad",
+    "Monday": "Margherita Wholemeal Pizza served with Savoury Vegetable Rice Salad(V)",
     "Tuesday": "Lunchtime Breakfast Brunch - Pork Sausage, Bacon, Hash Browns & Baked Beans",
     "Wednesday": "Beef Bolognese Pasta served with Garlic & Herb Bread and Seasonal Vegetables",
     "Thursday": "Roast Pork served with Roast Potatoes, Carrots, Broccoli, Yorkshire Pudding and Gravy",
