@@ -192,14 +192,18 @@ def get_meals_for_date(user_date):
 
 st.title("🍽️ Spinney School Lunch Menu Finder")
 
+MENU_START = date(2026, 4, 13)
+MENU_END   = date(2026, 10, 23)
+
 if "selected_date" not in st.session_state:
-    st.session_state.selected_date = date.today()
+    today = date.today()
+    st.session_state.selected_date = max(MENU_START, min(today, MENU_END))
 
 selected_date = st.date_input(
     "📅 Pick a date (13/04/2026–23/10/2026)",
     value=st.session_state.selected_date,
-    min_value=date(2026, 4, 13),
-    max_value=date(2026, 10, 23),
+    min_value=MENU_START,
+    max_value=MENU_END,
     format="DD/MM/YYYY",
 )
 st.session_state.selected_date = selected_date
