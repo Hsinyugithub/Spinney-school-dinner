@@ -78,70 +78,65 @@ st.markdown(
 # Data Setup
 # -----------------------------
 
-SPINNEY_LUNCH1 = {
-    "Monday": "Chicken Curry served with Savoury Vegetable Rice",
-    "Tuesday": "Pork Sausage in a Crusty Bun served with Jacket Wedges, Crispy Salad Sticks &amp; a Selection of Sauces",
-    "Wednesday": "Savoury Mince served with Mash Potato &amp; Seasonal Vegetables",
-    "Thursday": "Roast Chicken served with Potatoes, Yorkshire Pudding, Carrots, Cauliflower and Gravy",
-    "Friday": "Fish Fingers or Salmon Fish Fingers served with Chips, Garden Peas or Baked Beans &amp; Ketchup",
+SPINNEY_LUNCH1_CHOICE_1 = {
+    "Monday": "Rainbow Wholemeal Pizza served with Jacket Potato Wedges, Crunchy Carrot & Cucumber Sticks",
+    "Tuesday": "Jacket Potato with Choice of Toppings served with Fresh Salad",
+    "Wednesday": "Roasted Vegetable & Lentil Lasagne served with Wholemeal Garlic & Herb Bread, Mixed Vegetables or Salad",
+    "Thursday": "Quorn Fillet served with Roast Potatoes, Carrots, Cabbage, Yorkshire Pudding and Gravy",
+    "Friday": "Fish Fingers or Salmon Fish Fingers served with Chips, Garden Peas or Baked Beans & Ketchup",
 }
-
-SPINNEY_LUNCH2 = {
-    "Monday": "Cheese &amp; Potato Pie served with Peas &amp; Sweetcorn",
-    "Tuesday": "Jacket Potato with choice of toppings served with fresh salad",
-    "Wednesday": "Fish Fingers served with Creamy Mash Potato &amp; Spaghetti Hoops",
-    "Thursday": "Roast Gammon served with Roast Potatoes, Carrots, Broccoli, Yorkshire Pudding and Gravy",
-    "Friday": "Chicken Nuggets served with Chips, Garden Peas or Baked Beans &amp; Ketchup",
+SPINNEY_LUNCH2_CHOICE_1 = {
+    "Monday": "Butternut Squash & Cauliflower Korma served with Rice, Naan Bread finger & Seasonal Vegetables",
+    "Tuesday": "Margherita Wholemeal Pizza Pinwheel served with Baked Potato Wedges, Peas & Sweetcorn",
+    "Wednesday": "Powerballs in a Tomato Sauce served with Pasta, Homemade Wholemeal Garlic & Herb Bread and Seasonal Vegetables",
+    "Thursday": "Crispy Topped Baked Lentil Roast served with Potatoes, Yorkshire Pudding, Carrots, Broccoli and Gravy",
+    "Friday": "Breaded Fish Fillet served with Chips, Garden Peas or Baked Beans & Ketchup",
 }
-
-SPINNEY_LUNCH3 = {
-    "Monday": "Meat Wholemeal Pizza served with Baked Baby Potatoes, Peas &amp; Sweetcorn",
-    "Tuesday": "Fish Fillet served with Potato Wedges &amp; Seasonal Vegetables",
-    "Wednesday": "Beef Bolognese served with Spaghetti, Wholemeal Garlic &amp; Herb bread, Seasonal Vegetables",
-    "Thursday": "Roast Pork served with Potatoes, Carrots, Cabbage, Yorkshire Pudding and Gravy",
-    "Friday": "Chicken Burger served with Chips, Garden Peas or Baked Beans &amp; Ketchup",
+SPINNEY_LUNCH3_CHOICE_1 = {
+    "Monday": "Mild Tex Mex Bean Taco served with Savoury Vegetable Rice",
+    "Tuesday": "Jacket Potato with Choice of Toppings served with Fresh Salad",
+    "Wednesday": "Big Bold Vegetable & Lentil Bolognese served with Spaghetti, Garlic & Herb Bread and Seasonal Vegetables",
+    "Thursday": "Herby Quorn Sausage served with Roast Potatoes, Carrots, Broccoli, Yorkshire Pudding and Gravy",
+    "Friday": "Vegetable Burger in a Bun served with Chips, Garden Peas or Baked Beans & Ketchup",
 }
-
-VEG_LUNCH1 = {
-    "Monday": "Vegetable Nuggets served with Chips, Garden Peas or Baked Beans &amp; Ketchup",
-    "Tuesday": "Quorn Roast served with Yorkshire Pudding, Carrots, Cauliflower and Gravy",
-    "Wednesday": "Jacket Potato with Choice of Toppings served with Fresh Salad",
-    "Thursday": "Quorn Sausage in a Crusty Bun served with Jacket Wedges, Crispy Salad Sticks &amp; a Selection of Sauces",
-    "Friday": "Pasta Twists with Homemade Tomato and Vegetable Sauce served with Fresh Salad and Chunky Bread",
+SPINNEY_LUNCH1_CHOICE_2 = {
+    "Monday": "Jambalaya Jamboree served with Crusty Wholemeal Bread & Salad",
+    "Tuesday": "Baked Pork Sausage Roll served with Seasoned Cubed Potatoes & Baked Beans or Fresh Salad",
+    "Wednesday": "Homemade Beef Lasagne served with Wholemeal Garlic & Herb Bread, Mixed Vegetables or Salad",
+    "Thursday": "Roast Chicken served with Roast Potatoes, Carrots, Cabbage, Yorkshire Pudding and Gravy",
+    "Friday": "Quorn Sausage served with Chips, Garden Peas or Baked Beans & Ketchup",
 }
-
-VEG_LUNCH2 = {
-    "Monday": "Quorn Sausage served with Chips, Garden Peas or Baked Beans &amp; Ketchup",
-    "Tuesday": "Jacket Potato with Cheese &amp; Beans &amp; Fresh Salad",
-    "Wednesday": "Traditional Macaroni Cheese served with Wholemeal Garlic &amp; Herb bread, Seasonal Vegetables",
-    "Thursday": "Broccoli &amp; Cauliflower Cheese Bake, Roast Potatoes, Carrots, Broccoli, Yorkshire Pudding and Gravy",
-    "Friday": "Jacket Potato with Choice of Toppings served with Fresh Salad",
+SPINNEY_LUNCH2_CHOICE_2 = {
+    "Monday": "Traditional Macaroni Cheese served with Wholemeal Garlic & Herb Bread and Seasonal Vegetables",
+    "Tuesday": "Chicken Wholemeal Pizza Pinwheel served with Baked Potato Wedges, Peas & Sweetcorn",
+    "Wednesday": "Meatballs in a Tomato Sauce served with Pasta, Homemade Wholemeal Garlic & Herb Bread and Seasonal Vegetables",
+    "Thursday": "Roast Chicken served with Potatoes, Yorkshire Pudding, Carrots, Broccoli and Gravy",
+    "Friday": "Vegetable Nuggets served with Chips, Garden Peas or Baked Beans & Ketchup",
 }
-
-VEG_LUNCH3 = {
-    "Monday": "Vegetable Burger served with Chips, Garden Peas or Baked Beans &amp; Ketchup",
-    "Tuesday": "Quorn Sausage Roast served with Potatoes, Carrots, Cabbage, Yorkshire Pudding and Gravy",
-    "Wednesday": "Jacket Potato with Choice of Toppings served with Fresh Salad",
-    "Thursday": "Crispy Vegetable Bites served with Potatoes Wedges &amp; Seasonal Vegetables",
-    "Friday": "Pasta Twists with Homemade Tomato and Vegetable Sauce served with Fresh Salad and Chunky Bread",
+SPINNEY_LUNCH3_CHOICE_2 = {
+    "Monday": "Margherita Wholemeal Pizza served with Savoury Vegetable Rice Salad",
+    "Tuesday": "Lunchtime Breakfast Brunch - Pork Sausage, Bacon, Hash Browns & Baked Beans",
+    "Wednesday": "Beef Bolognese Pasta served with Garlic & Herb Bread and Seasonal Vegetables",
+    "Thursday": "Roast Pork served with Roast Potatoes, Carrots, Broccoli, Yorkshire Pudding and Gravy",
+    "Friday": "Chicken Burger in a Bun served with Fries, Garden Peas or Baked Beans & Ketchup",
 }
 
 MENU_WEEKS_2026 = {
-    "Week 1": ["19/01", "09/02", "02/03","23/03"],
-    "Week 2": ["26/01", "16/02", "09/03"],
-    "Week 3": ["02/02", "02/03", "23/02","16/03"],
+    "Week 1": ["13/04", "04/05", "01/06","22/06", "13/07", "31/08", "21/09", "12/10"],
+    "Week 2": ["20/04", "11/05", "08/06", "29/06", "20/07", "07/09", "28/09", "19/10"],
+    "Week 3": [ "27/04", "18/05","15/06", "06/07", "14/09", "05/10"],
 }
 
 LUNCH_MAP = {
-    "Week 1": SPINNEY_LUNCH1,
-    "Week 2": SPINNEY_LUNCH2,
-    "Week 3": SPINNEY_LUNCH3,
+    "Week 1": SPINNEY_LUNCH1_CHOICE_1,
+    "Week 2": SPINNEY_LUNCH2_CHOICE_1,
+    "Week 3": SPINNEY_LUNCH3_CHOICE_1,
 }
 
 VEG_MAP = {
-    "Week 1": VEG_LUNCH1,
-    "Week 2": VEG_LUNCH2,
-    "Week 3": VEG_LUNCH3,
+    "Week 1": SPINNEY_LUNCH1_CHOICE_2,
+    "Week 2": SPINNEY_LUNCH2_CHOICE_2,
+    "Week 3": SPINNEY_LUNCH3_CHOICE_2,
 }
 
 # -----------------------------
@@ -201,10 +196,10 @@ if "selected_date" not in st.session_state:
     st.session_state.selected_date = date.today()
 
 selected_date = st.date_input(
-    "📅 Pick a date (01/01/2026–31/03/2026)",
+    "📅 Pick a date (13/04/2026–23/10/2026)",
     value=st.session_state.selected_date,
-    min_value=date(2026, 1, 1),
-    max_value=date(2026, 3, 31),
+    min_value=date(2026, 4, 13),
+    max_value=date(2026, 10, 23),
     format="DD/MM/YYYY",
 )
 st.session_state.selected_date = selected_date
@@ -218,13 +213,13 @@ st.caption(f"📅 {user_date.strftime('%A')}")
 
 if st.button("⬅️ Previous day", use_container_width=True):
     prev_day = selected_date - timedelta(days=1)
-    if prev_day >= date(2026, 1, 1):
+    if prev_day >= date(2026, 4, 13):
         st.session_state.selected_date = prev_day
         st.rerun()
 
 if st.button("Next day ➡️", use_container_width=True):
     next_day = selected_date + timedelta(days=1)
-    if next_day <= date(2026, 3, 31):
+    if next_day <= date(2026, 10, 23):
         st.session_state.selected_date = next_day
         st.rerun()
 
